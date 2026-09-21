@@ -15,6 +15,7 @@
 	color: var(--color-text-secondary-page);
 	transition: color 520ms var(--ease-spring-gentle);
 }
+
 .back-link:hover {
 	color: var(--color-text-primary);
 }
@@ -47,12 +48,13 @@
 	flex-direction: column;
 	gap: 8px;
 }
+
 .detail-title {
 	font-size: 28px;
 	color: var(--color-text-primary);
 }
+
 .detail-subtitle {
-	margin: 0;
 	font-size: 14px;
 	line-height: 1.6;
 	color: var(--color-text-secondary-surface);
@@ -65,6 +67,7 @@
 	overflow: hidden;
 	background: var(--color-page);
 }
+
 .detail-image-well img {
 	display: block;
 	width: 100%;
@@ -85,38 +88,42 @@
 		1px 20px;
 	background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
 }
+
 .detail-meta-row {
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
 	padding: 24px;
 }
+
 .detail-meta-row.divider {
 	background-image: var(--dash-h);
 	background-position: bottom;
 	background-size: 20px 1px;
 	background-repeat: repeat-x;
 }
+
 @media (min-width: 600px) {
 	.detail-meta-row {
 		flex-direction: row;
 		gap: 12px;
 	}
 }
+
 .detail-meta-row dt {
-	margin: 0;
 	width: 100%;
 	font-size: 14px;
 	color: var(--color-text-primary);
 	flex-shrink: 0;
 }
+
 .detail-meta-row dd {
-	margin: 0;
 	width: 100%;
 	font-size: 14px;
 	line-height: 1.6;
 	color: var(--color-text-secondary-page);
 }
+
 @media (min-width: 600px) {
 	.detail-meta-row dt {
 		width: 120px;
@@ -127,16 +134,17 @@
 }
 
 .detail-context {
-	margin: 0;
 	font-size: 14px;
 	line-height: 1.6;
 	color: var(--color-text-secondary-surface);
 }
+
 .detail-context a {
 	text-decoration: underline;
 	text-underline-offset: 2px;
 	transition: color 520ms var(--ease-spring-gentle);
 }
+
 .detail-context a:hover {
 	color: var(--color-text-primary);
 }
@@ -146,18 +154,20 @@
 	flex-direction: column;
 	gap: 8px;
 }
+
 .detail-section h2 {
 	font-family: var(--font-sans);
 	font-size: 20px;
 	font-weight: 400;
 	color: var(--color-text-primary);
 }
+
 .detail-section p {
-	margin: 0;
 	font-size: 14px;
 	line-height: 1.6;
 	color: var(--color-text-secondary-surface);
 }
+
 .detail-section p .lead {
 	color: var(--color-text-primary);
 }
@@ -167,11 +177,13 @@
 	flex-direction: column;
 	gap: 8px;
 }
+
 .point-list.cards {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 12px;
 }
+
 @media (min-width: 600px) {
 	.point-list.cards {
 		grid-template-columns: 1fr 1fr;
@@ -185,21 +197,24 @@
 	min-height: 440px;
 	background: var(--color-page);
 }
+
 .point-card p {
-	margin: 0;
 	padding: 24px;
 	font-size: 14px;
 	line-height: 1.6;
 	color: var(--color-text-secondary-surface);
 }
+
 .point-card p .lead {
 	color: var(--color-text-primary);
 }
+
 .point-card .point-image-well {
 	width: 100%;
 	aspect-ratio: 1086 / 900;
 	overflow: hidden;
 }
+
 .point-card .point-image-well img {
 	display: block;
 	width: 100%;

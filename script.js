@@ -1,4 +1,5 @@
 // ---- Mobile nav pill toggle (<600px) ----
+
 const pillToggle = document.getElementById("pillToggle");
 const navPanel = document.getElementById("navPanel");
 const sidebar = document.getElementById("sidebar");

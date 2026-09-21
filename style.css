@@ -1,4 +1,3 @@
-/* ---------- Design tokens (colors, fonts) ---------- */
 :root {
 	--color-page: #f4f4f4;
 	--color-surface: #ffffff;
@@ -80,10 +79,11 @@
 
 * {
 	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-	margin: 0;
 	background: var(--color-page);
 	color: var(--color-text-primary);
 	font-family: var(--font-sans);
@@ -96,7 +96,6 @@ h2,
 h3 {
 	font-family: var(--font-serif);
 	font-weight: 400;
-	margin: 0;
 }
 
 a {
@@ -121,22 +120,18 @@ button {
 	}
 }
 
-/* ---- Layout shell ---- */
+/* ---- Layout ---- */
 .layout {
 	display: flex;
 	min-height: 100vh;
 }
 @media (min-width: 900px) {
 	.layout {
-		/* the gutter lives here, not on .content — it needs to shrink the
-		   row's available width so .content's own margin:auto centers it
-		   within what's left after the sidebar, instead of pinning it flush
-		   against the sidebar with all the leftover space dumped on the right */
 		padding-right: clamp(40px, calc(100vw - 860px), 260px);
 	}
 }
 
-/* ---------- Sidebar: 3 responsive tiers, one element ---------- */
+/* ---- Sidebar ---- */
 .sidebar {
 	position: fixed;
 	z-index: 40;
@@ -172,12 +167,10 @@ button {
 	white-space: nowrap;
 }
 .identity-name {
-	margin: 0;
 	font-size: 14px;
 	color: var(--color-text-primary);
 }
 .identity-role {
-	margin: 0;
 	font-size: 12px;
 	color: var(--color-text-secondary-page);
 }
@@ -204,7 +197,6 @@ button {
 	background: none;
 	border: none;
 	cursor: pointer;
-	padding: 0;
 	width: 24px;
 	height: 24px;
 	align-items: center;
@@ -219,16 +211,13 @@ button {
 	transform: rotate(180deg);
 }
 
-/* Tier 3 — mobile, <600px: collapsible pill with chevron */
+/* Mobile, <600px - collapsible pill with chevron */
 @media (max-width: 599px) {
 	.sidebar {
 		left: 50%;
 		bottom: 40px;
 		width: calc(100% - 72px);
 		flex-direction: column;
-		/* the gap itself animates 0 -> 20px on expand, same as the original —
-		   without this override the base 24px gap leaves dead space below the
-		   identity block even while the nav panel is collapsed to 0 height */
 		gap: 0;
 		transition: gap 520ms var(--ease-spring-gentle);
 		animation: slide-pill-in 520ms var(--ease-spring-gentle) both;
@@ -260,7 +249,7 @@ button {
 	}
 }
 
-/* Tier 2 — tablet, 600-899px: fixed bottom pill, always expanded */
+/* Tablet, 600-899px - fixed bottom pill, always expanded */
 @media (min-width: 600px) and (max-width: 899px) {
 	.sidebar {
 		left: 50%;
@@ -285,7 +274,7 @@ button {
 	}
 }
 
-/* Tier 1 — desktop, >=900px: sticky 260px column, no dashed bg, no shadow */
+/* Desktop, >=900px - sticky 260px column, no dashed bg, no shadow */
 @media (min-width: 900px) {
 	.sidebar {
 		position: sticky;
@@ -322,7 +311,7 @@ button {
 	}
 }
 
-/* ---------- Content column ---------- */
+/* ---- Content column ---- */
 .content {
 	position: relative;
 	overflow: hidden;
@@ -331,12 +320,10 @@ button {
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
-	/* margin, not padding, for the horizontal inset — the ::after dashed
-	   border below aligns to this box's own edges, so padding would put the
-	   dashed lines flush against the viewport edge instead of visibly inset */
 	margin: 0 16px;
 	padding: 40px 0 176px;
 }
+
 .content::after {
 	content: "";
 	position: absolute;
@@ -361,18 +348,13 @@ button {
 
 @media (min-width: 900px) {
 	.content {
-		/* margin:auto (not margin:0) — centers this fixed 600px column in
-		   whatever row-space is left after the sidebar and the .layout gutter,
-		   instead of pinning it flush against the sidebar */
 		margin: 0 auto;
 		padding: 40px 0 0;
 	}
 }
 
-/* ---------- Hero ---------- */
+/* ---- Hero ---- */
 .hero-heading-box {
-	/* background-color, not the `background` shorthand — the shorthand also
-	   resets background-image to none, wiping out the dashed line below */
 	background-color: var(--color-surface);
 	padding: 24px;
 	background-image: var(--dash-h);
@@ -386,6 +368,7 @@ button {
 	line-height: 1.2;
 	width: 100%;
 }
+
 @media (min-width: 600px) {
 	.hero-tagline {
 		width: 548px;
@@ -402,6 +385,7 @@ button {
 		20px 1px;
 	background-repeat: repeat-x, repeat-x;
 }
+
 @media (min-width: 600px) {
 	.hero-stats-box {
 		flex-direction: row;
@@ -415,12 +399,14 @@ button {
 	padding: 24px;
 	width: 100%;
 }
+
 .stat:not(:first-child) {
 	background-image: var(--dash-h);
 	background-position: top;
 	background-size: 20px 1px;
 	background-repeat: repeat-x;
 }
+
 @media (min-width: 600px) {
 	.stat:first-child {
 		flex: 1;
@@ -440,20 +426,20 @@ button {
 }
 
 .stat-label {
-	margin: 0;
 	font-size: 12px;
 	color: var(--color-text-secondary-page);
 }
+
 .stat-value {
-	margin: 0;
 	font-size: 16px;
 	color: var(--color-text-primary);
 }
 
-/* ---------- Case studies ---------- */
+/* ---- Case studies ---- */
 .case-studies-header {
 	padding: 24px;
 }
+
 .case-studies-header h2 {
 	font-family: var(--font-sans);
 	font-size: 16px;
@@ -479,6 +465,7 @@ button {
 	background-size: 20px 1px;
 	background-repeat: repeat-x;
 }
+
 .case-study-card.first {
 	background-image: var(--dash-h), var(--dash-h);
 	background-position: top, bottom;
@@ -487,6 +474,7 @@ button {
 		20px 1px;
 	background-repeat: repeat-x, repeat-x;
 }
+
 @media (min-width: 600px) {
 	.case-study-card {
 		height: 441px;
@@ -500,6 +488,7 @@ button {
 	overflow: hidden;
 	background: var(--color-surface);
 }
+
 .card-image-well img {
 	display: block;
 	width: 100%;
@@ -515,6 +504,7 @@ button {
 	gap: 8px;
 	width: 100%;
 }
+
 @media (min-width: 600px) {
 	.card-text {
 		height: 73px;
@@ -527,8 +517,8 @@ button {
 	color: var(--color-text-primary);
 	transition: transform 520ms var(--ease-spring-gentle);
 }
+
 .card-subtitle {
-	margin: 0;
 	font-family: var(--font-sans);
 	font-size: 14px;
 	color: var(--color-text-secondary-surface);
@@ -546,6 +536,7 @@ button {
 		transform: translateY(-50px);
 	}
 }
+
 @media (min-width: 900px) {
 	.card-subtitle {
 		position: absolute;
@@ -565,7 +556,7 @@ button {
 	}
 }
 
-/* ---------- Footer ---------- */
+/* ---- Footer ---- */
 .footer {
 	padding: 24px 24px 40px;
 	font-size: 14px;
