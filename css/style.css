@@ -1,0 +1,904 @@
+/* ---------- Design tokens (colors, fonts) ---------- */
+:root {
+	--color-page: #f4f4f4;
+	--color-surface: #ffffff;
+	--color-text-primary: #000000;
+	--color-text-secondary-page: #6f6f6f;
+	--color-text-secondary-surface: #767676;
+	--color-stroke: #d8d8d8;
+	--color-overlay: rgba(17, 17, 17, 0.12);
+
+	--font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+	--font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+
+	/* Spring "Gentle" easing (mass 1 / stiffness 100 / damping 15) */
+	--ease-spring-gentle: linear(
+		0,
+		0.0188,
+		0.0679,
+		0.1374,
+		0.2195,
+		0.308,
+		0.3978,
+		0.4856,
+		0.5686,
+		0.6452,
+		0.7142,
+		0.7753,
+		0.8283,
+		0.8735,
+		0.9113,
+		0.9423,
+		0.9671,
+		0.9866,
+		1.0014,
+		1.0123,
+		1.0198,
+		1.0247,
+		1.0274,
+		1.0283,
+		1.0281,
+		1.0268,
+		1.025,
+		1.0227,
+		1.0202,
+		1.0177,
+		1.0152,
+		1.0128,
+		1.0106,
+		1.0085,
+		1.0068,
+		1.0052,
+		1.0039,
+		1.0028,
+		1.0018,
+		1.0011,
+		1.0005,
+		1,
+		0.9997,
+		0.9995,
+		0.9993,
+		0.9992,
+		0.9992,
+		0.9992,
+		0.9992,
+		0.9993,
+		0.9993
+	);
+
+	--dash-h: linear-gradient(
+		to right,
+		var(--color-stroke) 50%,
+		transparent 50%
+	);
+	--dash-v: linear-gradient(
+		to bottom,
+		var(--color-stroke) 50%,
+		transparent 50%
+	);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background: var(--color-page);
+	color: var(--color-text-primary);
+	font-family: var(--font-sans);
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--font-serif);
+	font-weight: 400;
+	margin: 0;
+}
+
+a {
+	color: inherit;
+}
+
+button {
+	font-family: inherit;
+}
+
+/* ---- Dashed-border system ----
+   Tiled background-gradients instead of border-dashed.
+   10px dash / 10px gap. Each 20px tile = 10px solid stroke + 10px transparent. */
+.dash-t {
+	background-image: var(--dash-h);
+	background-position: top;
+	background-size: 20px 1px;
+	background-repeat: repeat-x;
+}
+.dash-b {
+	background-image: var(--dash-h);
+	background-position: bottom;
+	background-size: 20px 1px;
+	background-repeat: repeat-x;
+}
+.dash-l {
+	background-image: var(--dash-v);
+	background-position: left;
+	background-size: 1px 20px;
+	background-repeat: repeat-y;
+}
+.dash-r {
+	background-image: var(--dash-v);
+	background-position: right;
+	background-size: 1px 20px;
+	background-repeat: repeat-y;
+}
+.dash-t.dash-b {
+	background-image: var(--dash-h), var(--dash-h);
+	background-position: top, bottom;
+	background-size:
+		20px 1px,
+		20px 1px;
+	background-repeat: repeat-x, repeat-x;
+}
+.dash-l.dash-r {
+	background-image: var(--dash-v), var(--dash-v);
+	background-position: left, right;
+	background-size:
+		1px 20px,
+		1px 20px;
+	background-repeat: repeat-y, repeat-y;
+}
+.dashed {
+	background-image:
+		var(--dash-h), var(--dash-h), var(--dash-v), var(--dash-v);
+	background-position: top, bottom, left, right;
+	background-size:
+		20px 1px,
+		20px 1px,
+		1px 20px,
+		1px 20px;
+	background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+}
+
+@keyframes slide-pill-in {
+	from {
+		transform: translate(-50%, 150%);
+	}
+	to {
+		transform: translate(-50%, 0);
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.sidebar {
+		animation: none !important;
+	}
+}
+
+/* ---- Layout shell ---- */
+.layout {
+	display: flex;
+	min-height: 100vh;
+}
+@media (min-width: 900px) {
+	.layout {
+		/* the gutter lives here, not on .content — it needs to shrink the
+		   row's available width so .content's own margin:auto centers it
+		   within what's left after the sidebar, instead of pinning it flush
+		   against the sidebar with all the leftover space dumped on the right */
+		padding-right: clamp(40px, calc(100vw - 860px), 260px);
+	}
+}
+
+/* ---------- Sidebar: 3 responsive tiers, one element ---------- */
+.sidebar {
+	position: fixed;
+	z-index: 40;
+	display: flex;
+	justify-content: space-between;
+	gap: 24px;
+	background: var(--color-surface);
+	padding: 24px;
+	box-shadow: 0px 0px 16px 3px rgba(17, 17, 17, 0.06);
+	background-image:
+		var(--dash-h), var(--dash-h), var(--dash-v), var(--dash-v);
+	background-position: top, bottom, left, right;
+	background-size:
+		20px 1px,
+		20px 1px,
+		1px 20px,
+		1px 20px;
+	background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+}
+
+.sidebar-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.identity {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	text-decoration: none;
+	white-space: nowrap;
+}
+.identity-name {
+	margin: 0;
+	font-size: 14px;
+	color: var(--color-text-primary);
+}
+.identity-role {
+	margin: 0;
+	font-size: 12px;
+	color: var(--color-text-secondary-page);
+}
+
+.nav-links a {
+	display: flex;
+	align-items: center;
+	height: 28px;
+	text-decoration: none;
+	font-size: 12px;
+	color: var(--color-text-secondary-page);
+	transform-origin: left center;
+	transition:
+		color 520ms var(--ease-spring-gentle),
+		transform 520ms var(--ease-spring-gentle);
+}
+.nav-links a:hover {
+	color: var(--color-text-primary);
+	transform: scale(1.1667);
+}
+
+.pill-toggle {
+	display: none;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	width: 24px;
+	height: 24px;
+	align-items: center;
+	justify-content: center;
+	color: var(--color-text-secondary-surface);
+	flex-shrink: 0;
+}
+.pill-toggle svg {
+	transition: transform 520ms var(--ease-spring-gentle);
+}
+.pill-toggle[aria-expanded="true"] svg {
+	transform: rotate(180deg);
+}
+
+/* Tier 3 — mobile, <600px: collapsible pill with chevron */
+@media (max-width: 599px) {
+	.sidebar {
+		left: 50%;
+		bottom: 40px;
+		width: calc(100% - 72px);
+		flex-direction: column;
+		/* the gap itself animates 0 -> 20px on expand, same as the original —
+		   without this override the base 24px gap leaves dead space below the
+		   identity block even while the nav panel is collapsed to 0 height */
+		gap: 0;
+		transition: gap 520ms var(--ease-spring-gentle);
+		animation: slide-pill-in 520ms var(--ease-spring-gentle) both;
+	}
+	.sidebar.open {
+		gap: 20px;
+	}
+	.pill-toggle {
+		display: flex;
+	}
+	.nav-panel {
+		display: grid;
+		grid-template-rows: 0fr;
+		overflow: hidden;
+		transition: grid-template-rows 520ms var(--ease-spring-gentle);
+	}
+	.nav-panel.open {
+		grid-template-rows: 1fr;
+	}
+	.nav-panel > * {
+		min-height: 0;
+		overflow: hidden;
+	}
+	.nav-links {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 16px;
+	}
+}
+
+/* Tier 2 — tablet, 600-899px: fixed bottom pill, always expanded */
+@media (min-width: 600px) and (max-width: 899px) {
+	.sidebar {
+		left: 50%;
+		bottom: 40px;
+		width: 520px;
+		max-width: calc(100% - 32px);
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		animation: slide-pill-in 520ms var(--ease-spring-gentle) both;
+	}
+	.pill-toggle {
+		display: none;
+	}
+	.nav-panel {
+		display: block;
+	}
+	.nav-links {
+		display: flex;
+		flex-direction: row;
+		gap: 16px;
+	}
+}
+
+/* Tier 1 — desktop, >=900px: sticky 260px column, no dashed bg, no shadow */
+@media (min-width: 900px) {
+	.sidebar {
+		position: sticky;
+		top: 0;
+		left: auto;
+		bottom: auto;
+		transform: none;
+		width: 260px;
+		height: 100vh;
+		flex-shrink: 0;
+		flex-direction: column;
+		align-items: flex-start;
+		background: var(--color-page);
+		box-shadow: none;
+		background-image: none;
+		padding: 44px 40px 40px;
+		animation: none;
+	}
+	.pill-toggle {
+		display: none;
+	}
+	.nav-panel {
+		display: block;
+		width: 100%;
+	}
+	.nav-links {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		width: 100%;
+	}
+	.nav-links a {
+		width: 180px;
+	}
+}
+
+/* ---------- Content column ---------- */
+.content {
+	position: relative;
+	overflow: hidden;
+	flex: 1 1 auto;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	/* margin, not padding, for the horizontal inset — the ::after dashed
+	   border below aligns to this box's own edges, so padding would put the
+	   dashed lines flush against the viewport edge instead of visibly inset */
+	margin: 0 16px;
+	padding: 40px 0 176px;
+}
+/* The original paints its left/right dashed rules as a full-height overlay on
+   the content column itself (an ::after covering the whole box), not on each
+   section individually — this is what was missing before. */
+.content::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background-image: var(--dash-v), var(--dash-v);
+	background-position: left, right;
+	background-size:
+		1px 20px,
+		1px 20px;
+	background-repeat: repeat-y, repeat-y;
+}
+
+@media (min-width: 600px) {
+	.content {
+		flex: none;
+		width: 600px;
+		margin: 0 auto;
+		padding: 40px 0 140px;
+	}
+}
+
+@media (min-width: 900px) {
+	.content {
+		/* margin:auto (not margin:0) — centers this fixed 600px column in
+		   whatever row-space is left after the sidebar and the .layout gutter,
+		   instead of pinning it flush against the sidebar */
+		margin: 0 auto;
+		padding: 40px 0 0;
+	}
+}
+
+/* ---------- Hero ---------- */
+.hero-heading-box {
+	/* background-color, not the `background` shorthand — the shorthand also
+	   resets background-image to none, which would wipe out the dash-t utility
+	   class's dashed line since this rule comes later in the cascade */
+	background-color: var(--color-surface);
+	padding: 24px;
+}
+
+.hero-tagline {
+	font-size: 40px;
+	line-height: 1.2;
+	width: 100%;
+}
+@media (min-width: 600px) {
+	.hero-tagline {
+		width: 548px;
+	}
+}
+
+.hero-stats-box {
+	display: flex;
+	flex-direction: column;
+}
+@media (min-width: 600px) {
+	.hero-stats-box {
+		flex-direction: row;
+	}
+}
+
+.stat {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 24px;
+	width: 100%;
+}
+.stat:not(:first-child) {
+	background-image: var(--dash-h);
+	background-position: top;
+	background-size: 20px 1px;
+	background-repeat: repeat-x;
+}
+@media (min-width: 600px) {
+	.stat:first-child {
+		flex: 1;
+	}
+	.stat:not(:first-child) {
+		background-image: var(--dash-v);
+		background-position: left;
+		background-size: 1px 20px;
+		background-repeat: repeat-y;
+	}
+	.stat:nth-child(2) {
+		width: 192px;
+	}
+	.stat:nth-child(3) {
+		width: 168px;
+	}
+}
+
+.stat-label {
+	margin: 0;
+	font-size: 12px;
+	color: var(--color-text-secondary-page);
+}
+.stat-value {
+	margin: 0;
+	font-size: 16px;
+	color: var(--color-text-primary);
+}
+
+/* ---------- Case studies ---------- */
+.case-studies-header {
+	padding: 24px;
+}
+.case-studies-header h2 {
+	font-family: var(--font-sans);
+	font-size: 16px;
+	font-weight: 400;
+	color: var(--color-text-secondary-page);
+}
+
+.case-study-grid {
+	display: flex;
+	flex-direction: column;
+}
+
+.case-study-card {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	background: var(--color-surface);
+	padding: 24px;
+	cursor: pointer;
+	background-image: var(--dash-h);
+	background-position: bottom;
+	background-size: 20px 1px;
+	background-repeat: repeat-x;
+}
+.case-study-card.first {
+	background-image: var(--dash-h), var(--dash-h);
+	background-position: top, bottom;
+	background-size:
+		20px 1px,
+		20px 1px;
+	background-repeat: repeat-x, repeat-x;
+}
+@media (min-width: 600px) {
+	.case-study-card {
+		height: 441px;
+	}
+}
+
+.card-image-well {
+	position: relative;
+	width: 100%;
+	height: 296px;
+	overflow: hidden;
+	background: var(--color-surface);
+}
+.card-image-well img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: left;
+}
+
+.card-text {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	width: 100%;
+}
+@media (min-width: 600px) {
+	.card-text {
+		height: 73px;
+		justify-content: flex-end;
+	}
+}
+
+.card-title {
+	font-size: 24px;
+	color: var(--color-text-primary);
+	transition: transform 520ms var(--ease-spring-gentle);
+}
+.card-subtitle {
+	margin: 0;
+	font-family: var(--font-sans);
+	font-size: 14px;
+	color: var(--color-text-secondary-surface);
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+	.card-subtitle {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		opacity: 1;
+	}
+	.card-title {
+		transform: translateY(-50px);
+	}
+}
+@media (min-width: 900px) {
+	.card-subtitle {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		opacity: 0;
+		transition: opacity 520ms var(--ease-spring-gentle);
+	}
+	.case-study-card:hover .card-subtitle,
+	.case-study-card:focus-visible .card-subtitle {
+		opacity: 1;
+	}
+	.case-study-card:hover .card-title,
+	.case-study-card:focus-visible .card-title {
+		transform: translateY(-50px);
+	}
+}
+
+/* ---------- Footer ---------- */
+.footer {
+	padding: 24px 24px 40px;
+	font-size: 14px;
+	color: var(--color-text-secondary-page);
+}
+
+/* ---------- Modal (case-study overlay) ---------- */
+/* Always mounted (not display:none) so both the open AND close motion can
+   actually transition — display can't be animated, opacity/transform can. */
+.modal-backdrop {
+	position: fixed;
+	inset: 0;
+	z-index: 100;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow-y: auto;
+	background: var(--color-page);
+	padding: 40px 0 140px;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 520ms var(--ease-spring-gentle);
+}
+.modal-backdrop.open {
+	opacity: 1;
+	pointer-events: auto;
+}
+@media (min-width: 600px) {
+	.modal-backdrop {
+		padding-top: 0;
+	}
+}
+@media (min-width: 900px) {
+	.modal-backdrop {
+		background: var(--color-overlay);
+		padding: 80px 10px;
+	}
+}
+
+/* The card itself slides up from below the fold while the backdrop fades in —
+   two separate transitions on two separate elements, same as the original. */
+.modal-center {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	transform: translateY(100vh);
+	transition: transform 520ms var(--ease-spring-gentle);
+}
+.modal-backdrop.open .modal-center {
+	transform: translateY(0);
+}
+
+/* Fixed bottom-center pill (same treatment as the sidebar pills), not part of
+   the scrolling card — hidden entirely at 900px+, where closing is via the
+   dimmed backdrop instead. Hidden by default; shown only while a study is open. */
+.back-nav {
+	display: none;
+	position: fixed;
+	z-index: 110;
+	bottom: 40px;
+	left: 50%;
+	width: 120px;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--color-surface);
+	background-image:
+		var(--dash-h), var(--dash-h), var(--dash-v), var(--dash-v);
+	background-position: top, bottom, left, right;
+	background-size:
+		20px 1px,
+		20px 1px,
+		1px 20px,
+		1px 20px;
+	background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+	box-shadow: 0px 0px 16px 3px rgba(17, 17, 17, 0.06);
+	padding: 24px;
+	border: none;
+	cursor: pointer;
+	font-family: var(--font-sans);
+	font-size: 12px;
+	color: var(--color-text-secondary-page);
+	transform: translate(-50%, 150%);
+	transition:
+		color 520ms var(--ease-spring-gentle),
+		transform 520ms var(--ease-spring-gentle);
+}
+.back-nav:hover {
+	color: var(--color-text-primary);
+}
+.modal-backdrop.open .back-nav {
+	display: flex;
+	transform: translate(-50%, 0);
+}
+@media (min-width: 900px) {
+	.back-nav {
+		display: none !important;
+	}
+}
+
+.case-study-detail {
+	width: 800px;
+	max-width: 100%;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	background: var(--color-surface);
+	padding: 16px;
+	background-image:
+		var(--dash-h), var(--dash-h), var(--dash-v), var(--dash-v);
+	background-position: top, bottom, left, right;
+	background-size:
+		20px 1px,
+		20px 1px,
+		1px 20px,
+		1px 20px;
+	background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+}
+@media (min-width: 600px) {
+	.case-study-detail {
+		padding: 32px;
+	}
+}
+
+.modal-title-block {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.modal-title {
+	font-size: 28px;
+	color: var(--color-text-primary);
+}
+.modal-subtitle {
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.6;
+	color: var(--color-text-secondary-surface);
+}
+
+.modal-thumbnail-well {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 736 / 394;
+	overflow: hidden;
+	background: var(--color-page);
+}
+.modal-thumbnail-well img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.modal-meta {
+	display: flex;
+	flex-direction: column;
+	background-image:
+		var(--dash-h), var(--dash-h), var(--dash-v), var(--dash-v);
+	background-position: top, bottom, left, right;
+	background-size:
+		20px 1px,
+		20px 1px,
+		1px 20px,
+		1px 20px;
+	background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+}
+.modal-meta-row {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 24px;
+}
+.modal-meta-row.divider {
+	background-image: var(--dash-h);
+	background-position: bottom;
+	background-size: 20px 1px;
+	background-repeat: repeat-x;
+}
+@media (min-width: 600px) {
+	.modal-meta-row {
+		flex-direction: row;
+		gap: 12px;
+	}
+}
+.modal-meta-row dt {
+	margin: 0;
+	width: 100%;
+	font-size: 14px;
+	color: var(--color-text-primary);
+	flex-shrink: 0;
+}
+.modal-meta-row dd {
+	margin: 0;
+	width: 100%;
+	font-size: 14px;
+	line-height: 1.6;
+	color: var(--color-text-secondary-page);
+}
+@media (min-width: 600px) {
+	.modal-meta-row dt {
+		width: 120px;
+	}
+	.modal-meta-row dd {
+		flex: 1;
+	}
+}
+
+.modal-context {
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.6;
+	color: var(--color-text-secondary-surface);
+}
+.modal-context a {
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	transition: color 520ms var(--ease-spring-gentle);
+}
+.modal-context a:hover {
+	color: var(--color-text-primary);
+}
+
+.modal-section {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.modal-section h2 {
+	font-family: var(--font-sans);
+	font-size: 20px;
+	font-weight: 400;
+	color: var(--color-text-primary);
+}
+.modal-section p {
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.6;
+	color: var(--color-text-secondary-surface);
+}
+.modal-section p .lead {
+	color: var(--color-text-primary);
+}
+
+.point-list {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.point-list.cards {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 12px;
+}
+@media (min-width: 600px) {
+	.point-list.cards {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+.point-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 440px;
+	background: var(--color-page);
+}
+.point-card p {
+	margin: 0;
+	padding: 24px;
+	font-size: 14px;
+	line-height: 1.6;
+	color: var(--color-text-secondary-surface);
+}
+.point-card p .lead {
+	color: var(--color-text-primary);
+}
+.point-card .point-image-well {
+	width: 100%;
+	aspect-ratio: 1086 / 900;
+	overflow: hidden;
+}
+.point-card .point-image-well img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
