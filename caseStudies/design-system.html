@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>The design system that skipped Figma | Arsh Kaushik</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Instrument+Serif&display=swap"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="../style.css" />
+	<link rel="stylesheet" href="caseStudies.css" />
+</head>
+
+<body>
+	<div class="layout">
+		<aside class="sidebar" id="sidebar">
+			<div class="sidebar-header">
+				<a href="../index.html" class="identity">
+					<p class="identity-name">Arsh Kaushik</p>
+					<p class="identity-role">Product Designer</p>
+				</a>
+
+				<button class="pill-toggle" id="pillToggle" aria-label="Toggle navigation links" aria-expanded="false">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</button>
+			</div>
+
+			<div class="nav-panel" id="navPanel">
+				<nav class="nav-links" id="navLinks">
+					<a href="https://drive.google.com/file/d/1xNfit0vVxvwP9IuHDVszUhwiyMJdn8wb/view?usp=sharing"
+						target="_blank" rel="noopener">Resume</a>
+					<a href="https://www.linkedin.com/in/arshkaushik21/" target="_blank" rel="noopener">LinkedIn</a>
+					<a href="https://github.com/ArshKaushik" target="_blank" rel="noopener">GitHub</a>
+					<a href="mailto:arshkaushik21@gmail.com" target="_blank" rel="noopener">Email</a>
+				</nav>
+			</div>
+		</aside>
+
+		<main class="content case-study-page">
+			<a class="back-link" href="../index.html">&larr; Back to work</a>
+
+			<article class="detail-card">
+				<div class="detail-header">
+					<h1 class="detail-title">The design system that skipped Figma</h1>
+					<p class="detail-subtitle">A code-first design system built with agentic AI — no handoffs, governed by a
+						custom MCP that keeps every team in sync. Design-to-ship time dropped 30%.</p>
+				</div>
+
+				<div class="detail-image-well">
+					<img src="../images/thumbnails/designSystem.webp" alt="The design system that skipped Figma" />
+				</div>
+
+				<dl class="detail-meta">
+					<div class="detail-meta-row divider">
+						<dt>Role</dt>
+						<dd>Co-led — 1 of 5 designers with prior design-system context, on a 23 person design org</dd>
+					</div>
+					<div class="detail-meta-row divider">
+						<dt>Team</dt>
+						<dd>5 designers + 1 embedded UI engineer</dd>
+					</div>
+					<div class="detail-meta-row divider">
+						<dt>Timeline</dt>
+						<dd>1 month to a mature system · 2.5 months to migrate the full suite</dd>
+					</div>
+					<div class="detail-meta-row">
+						<dt>Stack</dt>
+						<dd>Next.js · Shadcn · Tailwind · Storybook · Custom MCP · Lucide</dd>
+					</div>
+				</dl>
+
+				<p class="detail-context"><a href="https://www.precisely.com" target="_blank" rel="noopener">Precisely</a>
+					is an enterprise data-integrity company and a recognized leader in the category. Its Data Integrity
+					Suite is a modular set of cloud services for integrating, governing, and improving data at scale, used
+					by thousands of large enterprises. The work below was for this suite.</p>
+
+				<section class="detail-section">
+					<h2>The problem</h2>
+					<p>Our design system was well-built in Figma but stalled in code. With too few front-end engineers to
+						maintain it, components drifted between design and build — and every UX validation pass turned
+						into rework.</p>
+				</section>
+
+				<section class="detail-section">
+					<h2>The real problem</h2>
+					<p>The bottleneck wasn't Figma. It was the handoff itself. Across 23 designers on an enterprise
+						suite, everyone improvised their own patterns, a central team couldn't keep pace, and
+						design-system debt took roughly six months to clear each cycle.</p>
+				</section>
+
+				<section class="detail-section">
+					<h2>What I did</h2>
+					<div class="point-list cards">
+						<div class="point-card">
+							<p><span class="lead">Went code-first.</span> Stress-tested agentic AI on production-grade
+								output, then rebuilt the system directly in code on a new stack — leaving the
+								Figma-to-code handoff behind.</p>
+							<div class="point-image-well">
+								<img src="../images/csAssets/designSystem/whatIDid-asset1.webp" alt="" />
+							</div>
+						</div>
+						<div class="point-card">
+							<p><span class="lead">Built a custom MCP.</span> Gave the AI agent live access to the design
+								system, so any feature is auto-checked for compliance — instead of designers manually
+								pointing AI at a cloned repo every build.</p>
+							<div class="point-image-well">
+								<img src="../images/csAssets/designSystem/whatIDid-asset2.webp" alt="" />
+							</div>
+						</div>
+						<div class="point-card">
+							<p><span class="lead">Made it a two-way loop.</span> When the agent flags a gap, it either
+								re-references the rule or surfaces a missing one to contribute back — so the whole org
+								evolves the system, not one central team.</p>
+							<div class="point-image-well">
+								<img src="../images/csAssets/designSystem/whatIDid-asset3.webp" alt="" />
+							</div>
+						</div>
+						<div class="point-card">
+							<p><span class="lead">Set the governance.</span> Defined how designers update components and
+								how engineers consume them, with Storybook as the component source of truth and a
+								documentation layer for everyone else.</p>
+							<div class="point-image-well">
+								<img src="../images/csAssets/designSystem/whatIDid-asset4.webp" alt="" />
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="detail-section">
+					<h2>Impact</h2>
+					<div class="point-list cards">
+						<div class="point-card">
+							<p><span class="lead">30% faster design-to-ship</span> measured against the prior
+								end-to-end feature average (1.5–2 months, validation loop included).</p>
+							<div class="point-image-well">
+								<img src="../images/csAssets/designSystem/impact-asset1.webp" alt="" />
+							</div>
+						</div>
+						<div class="point-card">
+							<p><span class="lead">Design-system debt: 6 months to clear → 1 week</span> and often none.
+							</p>
+							<div class="point-image-well">
+								<img src="../images/csAssets/designSystem/impact-asset2.webp" alt="" />
+							</div>
+						</div>
+						<div class="point-card">
+							<p><span class="lead">Adopted org-wide</span> with the entire suite migrated off Angular in
+								2.5 months.</p>
+							<div class="point-image-well">
+								<img src="../images/csAssets/designSystem/impact-asset3.webp" alt="" />
+							</div>
+						</div>
+						<div class="point-card">
+							<p><span class="lead">The design↔dev validation back-and-forth disappeared</span> one role
+								now owns both sides.</p>
+							<div class="point-image-well">
+								<img src="../images/csAssets/designSystem/impact-asset4.webp" alt="" />
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="detail-section">
+					<h2>The hardest call</h2>
+					<p>Agentic speed was easy, agentic quality wasn't. The real risk was AI pushing unstructured code
+						straight to production. As the org formalized the experience-engineer role, I leaned on pairing
+						designers with the embedded UI engineer to build genuine front-end fluency, and held the system
+						to review gates — so we moved fast without shipping code we couldn't stand behind.</p>
+				</section>
+			</article>
+
+			<footer class="footer">
+				<p>&copy; 2026</p>
+			</footer>
+		</main>
+	</div>
+
+	<script src="../script.js"></script>
+</body>
+
+</html>

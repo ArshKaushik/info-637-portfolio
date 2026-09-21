@@ -9,13 +9,12 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Instrument+Serif&display=swap"
 		rel="stylesheet" />
-	<link rel="stylesheet" href="css/style.css?v=4" />
+	<link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 	<div class="layout">
-		<!-- Sidebar: sticky column at 900px+, always-expanded bottom pill at 600-900px,
-         collapsible chevron pill under 600px — one element, three CSS-driven tiers -->
+		<!-- Sidebar -->
 		<aside class="sidebar" id="sidebar">
 			<div class="sidebar-header">
 				<a href="#" class="identity">
@@ -44,12 +43,12 @@
 		<main class="content">
 			<!-- Hero -->
 			<section class="hero">
-				<div class="hero-heading-box dash-t">
+				<div class="hero-heading-box">
 					<h1 class="hero-tagline">Solving the problem behind the stated problem through design & engineering
 					</h1>
 				</div>
 
-				<div class="hero-stats-box dash-t dash-b">
+				<div class="hero-stats-box">
 					<div class="stat">
 						<p class="stat-label">Best lift</p>
 						<p class="stat-value">Support tickets -50%</p>
@@ -71,7 +70,40 @@
 					<h2>Selected work</h2>
 				</div>
 				<div class="case-study-grid" id="caseStudyGrid">
-					<!-- Cards are rendered here by js/script.js from js/data.js -->
+					<a class="case-study-card first" href="caseStudies/design-system.html">
+						<div class="card-image-well">
+							<img src="images/thumbnails/designSystem.webp" alt="The design system that skipped Figma" />
+						</div>
+						<div class="card-text">
+							<h3 class="card-title">The design system that skipped Figma</h3>
+							<p class="card-subtitle">A code-first design system built with agentic AI — no handoffs,
+								governed by a custom MCP that keeps every team in sync. Design-to-ship time dropped 30%.
+							</p>
+						</div>
+					</a>
+					<a class="case-study-card" href="caseStudies/connector-config.html">
+						<div class="card-image-well">
+							<img src="images/thumbnails/connectorConfig.webp"
+								alt="Connector configuration without hand-holding" />
+						</div>
+						<div class="card-text">
+							<h3 class="card-title">Connector configuration without hand-holding</h3>
+							<p class="card-subtitle">Research-led redesign of a five-step data-configuration flow —
+								replacing jargon and dead ends with a path data stewards could follow alone. Support
+								tickets fell 50%.</p>
+						</div>
+					</a>
+					<a class="case-study-card" href="caseStudies/command-line.html">
+						<div class="card-image-well">
+							<img src="images/thumbnails/commandLine.webp" alt="Command line to control room" />
+						</div>
+						<div class="card-text">
+							<h3 class="card-title">Command line to control room</h3>
+							<p class="card-subtitle">Turned CLI-only agent management into one visual interface —
+								upgrades, rollbacks, and health monitoring at a glance, with instant outage alerts.
+								Human errors fell 80%.</p>
+						</div>
+					</a>
 				</div>
 			</section>
 
@@ -82,57 +114,7 @@
 		</main>
 	</div>
 
-	<!-- Single reusable case-study modal, filled by script.js on open -->
-	<div class="modal-backdrop" id="modalBackdrop">
-		<div class="modal-center">
-			<article class="case-study-detail" id="modal">
-				<div class="modal-title-block">
-					<h1 class="modal-title" id="modalTitle"></h1>
-					<p class="modal-subtitle" id="modalSubtitle"></p>
-				</div>
-
-				<div class="modal-thumbnail-well">
-					<img id="modalThumbnail" src="" alt="" />
-				</div>
-
-				<dl class="modal-meta" id="modalMeta"></dl>
-
-				<p class="modal-context" id="modalContext"></p>
-
-				<section class="modal-section">
-					<h2>The problem</h2>
-					<p id="modalProblem"></p>
-				</section>
-
-				<section class="modal-section">
-					<h2>The real problem</h2>
-					<p id="modalRealProblem"></p>
-				</section>
-
-				<section class="modal-section">
-					<h2>What I did</h2>
-					<div class="point-list" id="modalWhatIDid"></div>
-				</section>
-
-				<section class="modal-section">
-					<h2>Impact</h2>
-					<div class="point-list" id="modalImpact"></div>
-				</section>
-
-				<section class="modal-section">
-					<h2>The hardest call</h2>
-					<p id="modalHardestCall"></p>
-				</section>
-			</article>
-		</div>
-
-		<!-- Fixed bottom-center pill, same treatment as the sidebar pills — only
-		     shown below 900px; at desktop width closing is via backdrop click -->
-		<button class="back-nav" id="modalClose">Back</button>
-	</div>
-
-	<script src="js/data.js"></script>
-	<script src="js/script.js"></script>
+	<script src="script.js"></script>
 </body>
 
 </html>

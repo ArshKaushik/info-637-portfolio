@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Command line to control room | Arsh Kaushik</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Instrument+Serif&display=swap"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="../style.css" />
+	<link rel="stylesheet" href="caseStudies.css" />
+</head>
+
+<body>
+	<div class="layout">
+		<aside class="sidebar" id="sidebar">
+			<div class="sidebar-header">
+				<a href="../index.html" class="identity">
+					<p class="identity-name">Arsh Kaushik</p>
+					<p class="identity-role">Product Designer</p>
+				</a>
+
+				<button class="pill-toggle" id="pillToggle" aria-label="Toggle navigation links" aria-expanded="false">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</button>
+			</div>
+
+			<div class="nav-panel" id="navPanel">
+				<nav class="nav-links" id="navLinks">
+					<a href="https://drive.google.com/file/d/1xNfit0vVxvwP9IuHDVszUhwiyMJdn8wb/view?usp=sharing"
+						target="_blank" rel="noopener">Resume</a>
+					<a href="https://www.linkedin.com/in/arshkaushik21/" target="_blank" rel="noopener">LinkedIn</a>
+					<a href="https://github.com/ArshKaushik" target="_blank" rel="noopener">GitHub</a>
+					<a href="mailto:arshkaushik21@gmail.com" target="_blank" rel="noopener">Email</a>
+				</nav>
+			</div>
+		</aside>
+
+		<main class="content case-study-page">
+			<a class="back-link" href="../index.html">Back to selected work</a>
+
+			<article class="detail-card">
+				<div class="detail-header">
+					<h1 class="detail-title">Command line to control room</h1>
+					<p class="detail-subtitle">Turned CLI-only agent management into one visual interface — upgrades,
+						rollbacks, and health monitoring at a glance, with instant outage alerts. Human errors fell
+						80%.</p>
+				</div>
+
+				<div class="detail-image-well">
+					<img src="../images/thumbnails/commandLine.webp" alt="Command line to control room" />
+				</div>
+
+				<dl class="detail-meta">
+					<div class="detail-meta-row divider">
+						<dt>Role</dt>
+						<dd>Lead designer &amp; engineer — UX designer on version management, experience engineer on
+							the agent health dashboard (designed and developed with agentic AI)</dd>
+					</div>
+					<div class="detail-meta-row divider">
+						<dt>Teams</dt>
+						<dd>Data Integration (version management) + Data Configuration (agent health dashboard)</dd>
+					</div>
+					<div class="detail-meta-row divider">
+						<dt>Timeline</dt>
+						<dd>2.5mo version-management (design) · 1mo dashboard (design + development)</dd>
+					</div>
+					<div class="detail-meta-row">
+						<dt>Stack</dt>
+						<dd>Figma · VS Code · Copilot · Claude Code · Next.js · Shadcn · Tailwind</dd>
+					</div>
+				</dl>
+
+				<p class="detail-context"><a href="https://www.precisely.com" target="_blank"
+						rel="noopener">Precisely</a>
+					is an enterprise data-integrity company and a recognized leader in the category. Its Data Integrity
+					Suite is a modular set of cloud services for integrating, governing, and improving data at scale,
+					used
+					by thousands of large enterprises. The work below was for this suite.</p>
+
+				<section class="detail-section">
+					<h2>The problem</h2>
+					<p>Data stewards managed data agents entirely from the command line — upgrading and rolling back
+						versions by hand. Seeing what a change would affect meant a long chain of commands; knowing
+						whether an agent was even online meant hunting through the CLI or digging into its history on
+						screen. The commands were long and easy to fat-finger.</p>
+				</section>
+
+				<section class="detail-section">
+					<h2>The real problem</h2>
+					<p>Two teams, one root cause: the CLI made routine, high-stakes work — version changes on live
+						agents — both blind and error-prone. Back-end command logs showed people repeatedly mistyping
+						the lengthy commands and burning time just to answer "what depends on this?" The fix wasn't a
+						better command. It was making the system's state visible.</p>
+				</section>
+
+				<section class="detail-section">
+					<h2>What I did</h2>
+					<div class="point-list">
+						<p><span class="lead">Combined two separate efforts</span> version management (Data
+							Integration) and an agent health dashboard (Data Configuration) — into one coherent control
+							surface.</p>
+						<p><span class="lead">Designed the version-management experience</span> upgrades, rollbacks,
+							and a clear view of dependencies and downstream impact that the CLI kept hidden.</p>
+						<p><span class="lead">Designed and developed the health dashboard</span> agentically, in code
+							— so stewards get status, history, and instant outage alerts at a glance instead of
+							querying for them.</p>
+						<p><span class="lead">Climbed into the back end with the engineers</span> to learn how
+							versioning actually works — affected files, dependencies, failure modes — so the UI
+							reflected real system behavior, not a designer's guess.</p>
+						<p><span class="lead">Pushed for new interaction patterns</span> over the familiar table
+							layout, making the case to PM and engineering for why they served users better.</p>
+					</div>
+				</section>
+
+				<section class="detail-section">
+					<h2>Impact</h2>
+					<div class="point-list">
+						<p><span class="lead">80% fewer task errors in internal testing</span> validated with support
+							engineers and fresh-eyes back-end engineers. (Production rollout was paused by a
+							company-wide stack migration.)</p>
+						<p><span class="lead">Dependency impact that took a chain of CLI commands to uncover became
+								visible at a glance.</span></p>
+						<p><span class="lead">Customers, shown the work via support engineers, expected a large
+								cut</span> in the time spent managing and monitoring agents.</p>
+					</div>
+				</section>
+
+				<section class="detail-section">
+					<h2>The hardest call</h2>
+					<p>Two fronts. Convincing the PM and engineers to leave the familiar table-style interface for new
+						interaction patterns took repeated discussion and a clear UX rationale. Harder still was the
+						technical climb: to design version management honestly, I had to understand how it actually
+						works under the hood — which files change, what dependencies break, how the process runs —
+						sitting with engineers until the system model was mine, not theirs. That depth is exactly what
+						let me build the dashboard rather than just mock it.</p>
+				</section>
+			</article>
+
+			<footer class="footer">
+				<p>&copy; 2026</p>
+			</footer>
+		</main>
+	</div>
+
+	<script src="../script.js"></script>
+</body>
+
+</html>

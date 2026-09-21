@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Connector configuration without hand-holding | Arsh Kaushik</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Instrument+Serif&display=swap"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="../style.css" />
+	<link rel="stylesheet" href="caseStudies.css" />
+</head>
+
+<body>
+	<div class="layout">
+		<aside class="sidebar" id="sidebar">
+			<div class="sidebar-header">
+				<a href="../index.html" class="identity">
+					<p class="identity-name">Arsh Kaushik</p>
+					<p class="identity-role">Product Designer</p>
+				</a>
+
+				<button class="pill-toggle" id="pillToggle" aria-label="Toggle navigation links" aria-expanded="false">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</button>
+			</div>
+
+			<div class="nav-panel" id="navPanel">
+				<nav class="nav-links" id="navLinks">
+					<a href="https://drive.google.com/file/d/1xNfit0vVxvwP9IuHDVszUhwiyMJdn8wb/view?usp=sharing"
+						target="_blank" rel="noopener">Resume</a>
+					<a href="https://www.linkedin.com/in/arshkaushik21/" target="_blank" rel="noopener">LinkedIn</a>
+					<a href="https://github.com/ArshKaushik" target="_blank" rel="noopener">GitHub</a>
+					<a href="mailto:arshkaushik21@gmail.com" target="_blank" rel="noopener">Email</a>
+				</nav>
+			</div>
+		</aside>
+
+		<main class="content case-study-page">
+			<a class="back-link" href="../index.html">&larr; Back to work</a>
+
+			<article class="detail-card">
+				<div class="detail-header">
+					<h1 class="detail-title">Connector configuration without hand-holding</h1>
+					<p class="detail-subtitle">Research-led redesign of a five-step data-configuration flow — replacing
+						jargon and dead ends with a path data stewards could follow alone. Support tickets fell 50%.</p>
+				</div>
+
+				<div class="detail-image-well">
+					<img src="../images/thumbnails/connectorConfig.webp" alt="Connector configuration without hand-holding" />
+				</div>
+
+				<dl class="detail-meta">
+					<div class="detail-meta-row divider">
+						<dt>Role</dt>
+						<dd>Lead UX Designer</dd>
+					</div>
+					<div class="detail-meta-row divider">
+						<dt>Team</dt>
+						<dd>Data Configuration + Data Quality</dd>
+					</div>
+					<div class="detail-meta-row divider">
+						<dt>Timeline</dt>
+						<dd>5.5 months — 1.5 research · 2.5 design · 1.5 development</dd>
+					</div>
+					<div class="detail-meta-row">
+						<dt>Method &amp; tools</dt>
+						<dd>Contextual Inquiry · Figma · FigJam · MS Teams · Copilot (analysis)</dd>
+					</div>
+				</dl>
+
+				<p class="detail-context"><a href="https://www.precisely.com" target="_blank" rel="noopener">Precisely</a>
+					is an enterprise data-integrity company and a recognized leader in the category. Its Data Integrity
+					Suite is a modular set of cloud services for integrating, governing, and improving data at scale, used
+					by thousands of large enterprises. The work below was for this suite.</p>
+
+				<section class="detail-section">
+					<h2>The problem</h2>
+					<p>Setting up a data source meant moving through a multi-step flow — source, credentials, catalog,
+						profiling, scheduling — built on non-standard terminology the UI never explained. Scheduling,
+						with its two schedulers, was the worst. Anyone who hadn't used it for years got stuck, and the
+						confusion turned into support tickets.</p>
+				</section>
+
+				<section class="detail-section">
+					<h2>The real problem</h2>
+					<p>The flow had never been researched — every decision rested on the team's own product
+						assumptions, never tested against a user. The friction wasn't one bad screen; nothing on screen
+						told users what it was asking of them, or why. It also boxed them in: routine control over
+						their own data assets — catalog rules, which datasets to profile and score, scheduling
+						specifics, a closing summary — lived in a separate product, so finishing a connector meant
+						detouring out to the Data Catalog to do it.</p>
+				</section>
+
+				<section class="detail-section">
+					<h2>What I did</h2>
+					<div class="point-list">
+						<p><span class="lead">Ran the flow's first-ever user research.</span> Scoped it, wrote the
+							guide, recruited, and interviewed six support engineers chosen because they didn't know the
+							flow — so the gaps would surface without veteran bias.</p>
+						<p><span class="lead">Synthesized and aligned.</span> Analyzed in FigJam (and tested Copilot as
+							an analysis aid), then walked design, product, and engineering through the findings to
+							agree on what to build.</p>
+						<p><span class="lead">Designed three features as one flow.</span> Translated the findings into
+							three feature tickets and designed them in parallel as a single coherent experience, not
+							three patches.</p>
+						<p><span class="lead">Brought control in-house.</span> Gave users command over their own data
+							assets inside the flow — catalog rules, dataset selection for profiling and scoring,
+							scheduling options, and an end-of-flow summary — instead of forcing a detour to a separate
+							product to get them.</p>
+						<p><span class="lead">Held the scope line.</span> Kept it a connector-configuration flow — not
+							a launchpad into other suite products — while reconciling overlapping, already-shipped work
+							from the Data Quality team.</p>
+						<p><span class="lead">Made the case for UX analytics.</span> Used the research to convince
+							product and engineering to stand up proper UX measurement — heatmaps, funnels, event
+							tracking — so future problems could surface in data before they needed a full research
+							cycle.</p>
+					</div>
+				</section>
+
+				<section class="detail-section">
+					<h2>Impact</h2>
+					<div class="point-list">
+						<p><span class="lead">50% drop in support tickets</span> about understanding the flow —
+							validated with fresh-eyes internal testing before launch.</p>
+						<p><span class="lead">The flow became self-service</span> users could configure a source,
+							including catalog, profiling, and scheduling controls that used to require a separate
+							product, without hand-holding.</p>
+						<p><span class="lead">Set the first research baseline</span> for a flow only ever designed on
+							assumption — and got UX analytics onto the roadmap, so future problems surface in data
+							first.</p>
+					</div>
+				</section>
+
+				<section class="detail-section">
+					<h2>The hardest call</h2>
+					<p>Late in the redesign, we found the Data Quality team had already shipped two overlapping
+						features, with a third coming — surfaced only because cross-team communication, especially at
+						the PM level, hadn't been happening. Absorbing them ballooned the scope. The hard judgment was
+						refusing to let the flow sprawl: I pushed to keep it a clean connector-configuration experience
+						rather than a maze of routes into the rest of the suite, even as the pressure to bolt everything
+						on mounted.</p>
+				</section>
+			</article>
+
+			<footer class="footer">
+				<p>&copy; 2026</p>
+			</footer>
+		</main>
+	</div>
+
+	<script src="../script.js"></script>
+</body>
+
+</html>
