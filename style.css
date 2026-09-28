@@ -191,6 +191,16 @@ button {
 	color: var(--color-text-primary);
 	transform: scale(1.1667);
 }
+.nav-links a.current {
+	font-size: 14px;
+	color: var(--color-text-primary);
+}
+
+.nav-groups {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
 
 .pill-toggle {
 	display: none;
@@ -296,9 +306,17 @@ button {
 	.pill-toggle {
 		display: none;
 	}
+	/* .nav-panel and .nav-groups exist to group + collapse both nav lists
+	   together on mobile/tablet — at desktop there's no collapse, and the
+	   sidebar's own space-between should spread head/page-links/external-
+	   links across the full column like the Figma design, so both wrappers
+	   are removed from the box tree, promoting the two <nav> lists to be
+	   direct flex children of .sidebar. */
 	.nav-panel {
-		display: block;
-		width: 100%;
+		display: contents;
+	}
+	.nav-groups {
+		display: contents;
 	}
 	.nav-links {
 		display: flex;
@@ -398,6 +416,33 @@ button {
 	gap: 8px;
 	padding: 24px;
 	width: 100%;
+}
+
+/* ---------- About ---------- */
+.about-card {
+	background-color: var(--color-surface);
+	padding: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	background-image: var(--dash-h), var(--dash-h);
+	background-position: top, bottom;
+	background-size:
+		20px 1px,
+		20px 1px;
+	background-repeat: repeat-x, repeat-x;
+}
+.about-text {
+	font-family: var(--font-serif);
+	font-size: 24px;
+	line-height: 1.6;
+	color: var(--color-text-primary);
+	width: 100%;
+}
+@media (min-width: 600px) {
+	.about-text {
+		width: 548px;
+	}
 }
 
 .stat:not(:first-child) {
